@@ -42,6 +42,11 @@ namespace WinFormModelValidation
             {
                 //Display validation errors
                 //These are available in your results.   
+
+                // here i do custom validation to add custom message
+                if (txtID.Text.Trim() == "")
+                    results.Add(new ValidationResult("ID is required", new List<string>() { "ID" }));
+
                 foreach (var result in results)
                 {
                     if (result.MemberNames.Contains("ID"))
@@ -67,8 +72,8 @@ namespace WinFormModelValidation
 
     public class Employee
     {
-        [Required(ErrorMessage = "Employee ID is required", AllowEmptyStrings = false)]
-        [Range(1, 10000000, ErrorMessage = "ID can't be Zero")]
+        //[Required(ErrorMessage = "Employee ID is required", AllowEmptyStrings = false)]
+        //[Range(1, 10000000, ErrorMessage = "ID can't be Zero")]
         public int? ID { get; set; }
 
         [Required(ErrorMessage = "Employee Name is required")]
